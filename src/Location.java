@@ -1,17 +1,17 @@
 public class Location{
-	private float x;
-	private float y;
+	private int x;
+	private int y;
 
-	public Location(float x, float y) {
+	public Location(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
 
-	public float getX() {
+	public int getX() {
 		return x;
 	}
 
-	public float getY() {
+	public int getY() {
 		return y;
 	}
 }

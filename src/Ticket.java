@@ -2,17 +2,17 @@ public class Ticket{
 
 	private int id;
 	private String type;
-	private Rute rute;
+	private Trip trip;
 	private int price;
 	private boolean seating;
 	private boolean bike;
 	private boolean stroller;
 	private static int countid;
 
-	public Ticket(String type, Rute rute, int price, boolean seating, boolean bike, boolean stroller) {
+	public Ticket(String type, Trip trip, int price, boolean seating, boolean bike, boolean stroller) {
 		this.id = countid++;
 		this.type = type;
-		this.rute = rute;
+		this.trip = trip;
 		this.price = price;
 		this.seating = seating;
 		this.bike = bike;
@@ -27,8 +27,8 @@ public class Ticket{
 		return type;
 	}
 
-	public Rute getRute() {
-		return rute;
+	public Trip getTrip() {
+		return trip;
 	}
 
 	public int getPrice() {

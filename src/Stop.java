@@ -2,12 +2,12 @@ public class Stop{
 
 	private int id;
 	private Station station;
-	private Time arrival;
-	private time departure;
+	private String arrival;
+	private String departure;
 	private int track;
 	private static int countid;
 
-	public Stop(Station station, Time arrival, time departure, int track) {
+	public Stop(Station station, String arrival, String departure, int track) {
 		this.id = countid++;
 		this.station = station;
 		this.arrival = arrival;
@@ -23,11 +23,11 @@ public class Stop{
 		return station;
 	}
 
-	public Time getArrival() {
+	public String getArrival() {
 		return arrival;
 	}
 
-	public time getDeparture() {
+	public String getDeparture() {
 		return departure;
 	}
 
