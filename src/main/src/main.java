@@ -9,7 +9,6 @@ public class main{
 		ArrayList<Station> stationer = new ArrayList();
 		ArrayList<Trip> trips = new ArrayList<>();
 
-
 		try {
 			HashMap<Integer, String[]> tripTemp = new HashMap();
 			HashMap<Integer, ArrayList<String>> timesTemp = new HashMap();
@@ -76,8 +75,8 @@ public class main{
 		}
 
 		//trips.forEach(trip -> System.out.println(trip.getTripHeadsign()));
-
-		System.out.println(trips.size());
+		ApiInteg.getTrips(8600646, 8600798, "22/12/2022", "17:55");
+		//System.out.println(trips.size());
 
 	}
 

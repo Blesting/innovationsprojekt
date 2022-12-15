@@ -5,7 +5,7 @@ public class Stop{
 	private String arrival;
 	private String departure;
 	private int track;
-	private static int countid;
+	private static int countid = 0;
 
 	public Stop(Station station, String arrival, String departure, int track) {
 		this.id = countid++;
