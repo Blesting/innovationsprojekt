@@ -20,7 +20,7 @@ public class ApiInteg{
         try {
             URL request = new URL("http://xmlopen.rejseplanen.dk/bin/rest.exe/trip?originId=" + originID + "&destId=" + destID + "&date=" +
                     date + "&time=" + time +
-                    "&useBus=0\n");
+                    "&useBus=0&format=json\n");
             HttpURLConnection connec = (HttpURLConnection) request.openConnection();
             connec.setRequestMethod("GET");
             int status = connec.getResponseCode();
