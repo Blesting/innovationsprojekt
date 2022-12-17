@@ -189,7 +189,7 @@ public class main{
 		}
 		return validTrips;
 	}
-
+  
 	public static int[] getStationIds(String fromStationName, String toStationName){
 		int[] stationIds = {0,0};
 

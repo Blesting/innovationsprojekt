@@ -1,17 +1,16 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.URI;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.net.http.HttpRequest;
+import java.util.Map;
+import java.util.List;
 
 public class ApiInteg{
     public static void getTrips(int originID, int destID, String date, String time) {
         try {
             URL request = new URL("http://xmlopen.rejseplanen.dk/bin/rest.exe/trip?originId=" + originID + "&destId=" + destID + "&date=" +
                     date + "&time=" + time +
-                    "&useBus=0\n");
+                    "&useBus=0&format=json\n");
             HttpURLConnection connec = (HttpURLConnection) request.openConnection();
             connec.setRequestMethod("GET");
             int status = connec.getResponseCode();
@@ -29,10 +28,10 @@ public class ApiInteg{
                 in.close();
             }
             connec.disconnect();
-            System.out.println(content);
+            Map<String, Object> json = PrintJson.parseJson(content);
+            PrintJson.printJson(json);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 }

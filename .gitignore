@@ -2,5 +2,5 @@
 *.class
 *.iml
 *.xml
-src/main/data/stop_times.txt
 .idea/.name
+data/stop_times.txt
