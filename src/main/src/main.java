@@ -75,7 +75,7 @@ public class main{
 		}
 
 		//trips.forEach(trip -> System.out.println(trip.getTripHeadsign()));
-		ApiInteg.getTrips(8600512, 8600626, "23/12/2022", "17:55");
+		//ApiInteg.getTrips(8600512, 8600626, "23/12/2022", "17:55");
 		//System.out.println(trips.size());
 
 	}
