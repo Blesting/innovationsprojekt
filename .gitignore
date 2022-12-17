@@ -2,3 +2,5 @@
 *.class
 *.iml
 *.xml
+data/stop_times.txt
+src/main/data/stop_times.txt
