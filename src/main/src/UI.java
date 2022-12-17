@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -68,11 +69,14 @@ public class UI{
 				else if(fromStationId == 0 || toStationId == 0)
 					wrongInputLabel.setText("at least one station doesn't exist");
 				else if(fromTime.isBlank() || toTime.isBlank())
-					wrongInputLabel.setText("you must enter a time"); // TODO check om tid er korrekt format
+					wrongInputLabel.setText("you must enter a time");
+				else if(!(isValidTime(fromTime) && isValidTime(toTime))){
+					wrongInputLabel.setText("time must be of correct format (HH:MM:SS) and valid");
+				}
 				else
 					wrongInputLabel.setText(":)");
 
-				if(wrongInputLabel.getText().equals(":)") && fromStationId == 8600512 && toStationId == 8600626){
+				if(wrongInputLabel.getText().equals(":)")){
 					homePage.dispose();
 					buildMainPage(fromStationId, toStationId, fromTime, toTime);
 				}
@@ -85,6 +89,30 @@ public class UI{
 		homePage.setSize(width, height);
 		homePage.setLayout(null);
 		homePage.setVisible(true);
+	}
+
+	private static boolean isValidTime(String input){
+
+		String[] inputArray = input.split(":");
+		if(inputArray.length != 3)
+			return false;
+
+		String validChars = ":0123456789";
+		for(int i = 0; i < input.length(); i++){
+			if(!validChars.contains(String.valueOf(input.charAt(i))))
+				return false;
+		}
+
+		int[] inputIntArray = new int[3];
+		for(int i = 0; i < 3; i++){
+			inputIntArray[i] = Integer.valueOf(inputArray[i]);
+		}
+
+		if(inputIntArray[0] < 0 || inputIntArray[0] > 23 || inputIntArray[1] < 0 || inputIntArray[1] > 59  || inputIntArray[2] < 0 || inputIntArray[2] > 59)
+			return false;
+
+
+		return true;
 	}
 
 	public static void buildMainPage(int fromStation, int toStation, String fromTime, String toTime){
@@ -128,12 +156,25 @@ public class UI{
 		}
 		JTable table = new JTable(data, fields){
 			//No columns should be editable
-			public boolean isCellEditable(int row, int column){ return column == 0; }
+			public boolean isCellEditable(int row, int column){ return false; }
 		};
 		JScrollPane scrollPane = new JScrollPane(table);
 		table.setFillsViewportHeight(true);
 
-		mainPage.add(validTripsLabel, BorderLayout.NORTH);
+		//back button
+		JButton backButton = new JButton("<-");
+		backButton.setBounds(10,10,50,30);
+		backButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mainPage.dispose();
+				buildHomepage();
+			}
+		});
+		JPanel top = new JPanel();
+		top.add(backButton);
+		top.add(validTripsLabel);
+		mainPage.add(top, BorderLayout.NORTH);
 		mainPage.add(scrollPane, BorderLayout.CENTER);
 
 
@@ -141,4 +182,5 @@ public class UI{
 		mainPage.setSize(width, height);
 		mainPage.setVisible(true);
 	}
+
 }
