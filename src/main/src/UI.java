@@ -182,5 +182,4 @@ public class UI{
 		mainPage.setSize(width, height);
 		mainPage.setVisible(true);
 	}
-
 }

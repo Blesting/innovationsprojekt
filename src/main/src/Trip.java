@@ -40,5 +40,4 @@ public class Trip{
 		return arrival;
 	}
 
-
 }

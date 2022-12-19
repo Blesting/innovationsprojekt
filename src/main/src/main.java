@@ -15,9 +15,19 @@ public class main{
 		UI.buildHomepage();
 
 
+
 		/*
 		int[] stationIds = getStationIds("Odense St.", "København H");
-		getValidTrips(stationIds[0], stationIds[1], "17:00:00", "20:00:00").forEach(System.out::println);
+		ArrayList<String> validTripsTest = getValidTrips(stationIds[0], stationIds[1], "17:00:00", "20:00:00");
+		validTripsTest.forEach(System.out::println);
+		System.out.println(validTripsTest.size());
+		*/
+
+		/*
+		stationIds = getStationIds("Sorø St.", "Slagelse St.");
+		validTripsTest = getValidTrips(stationIds[0], stationIds[1], "17:00:00", "20:00:00");
+		validTripsTest.forEach(System.out::println);
+		System.out.println(validTripsTest.size());
 		*/
 
 		//trips.forEach(trip -> System.out.println(trip.getTripHeadsign()));
@@ -45,8 +55,7 @@ public class main{
 					.lines()
 					.skip(1)
 					.map(line -> line.split(";"))
-					.filter(lineArray -> lineArray[0].length() == 7)
-					//.peek(System.out::println)
+					.filter(lineArray -> lineArray[0].length() == 7) //Filters only trainstations
 					.forEach(lineArray -> {
 						Location location = new Location(Integer.valueOf(lineArray[2]), Integer.valueOf(lineArray[3]));
 						Station station = new Station(Integer.valueOf(lineArray[0]), lineArray[1].substring(1,lineArray[1].length() - 1), location);
@@ -58,7 +67,6 @@ public class main{
 					.lines()
 					.skip(1)
 					.map(line -> line.split(","))
-					//.peek(System.out::println)
 					.forEach(lineArray -> tripTemp.put(Integer.valueOf(lineArray[2]), lineArray));
 
 			fileString = Files.readString(Path.of("src/main/data/stop_times.txt"));
@@ -66,7 +74,6 @@ public class main{
 					.lines()
 					.skip(1)
 					.map(line -> line.split(","))
-					//.peek(System.out::println)
 					.forEach(lineArray -> {
 						Integer tripId = Integer.valueOf(lineArray[0]);
 						if(!timesTemp.containsKey(tripId)){
@@ -117,7 +124,7 @@ public class main{
 					.skip(1)
 					.map(line -> line.split(","))
 					.filter(lineArray -> lineArray[3].equals(fromStation) || lineArray[3].equals(toStation))
-					//.peek(System.out::println)
+					//.filter(lineArray -> !lineArray[1].equals(lineArray[2]))
 					.forEach(lineArray -> {
 						if(lineArray[3].equals(fromStation)){
 							if(!testMap.containsKey(lineArray[0])){
@@ -225,6 +232,5 @@ public class main{
 
 		return dummyData;
 	}
-
 
 }
