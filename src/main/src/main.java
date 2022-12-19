@@ -14,26 +14,6 @@ public class main{
 
 		UI.buildHomepage();
 
-
-
-		/*
-		int[] stationIds = getStationIds("Odense St.", "København H");
-		ArrayList<String> validTripsTest = getValidTrips(stationIds[0], stationIds[1], "17:00:00", "20:00:00");
-		validTripsTest.forEach(System.out::println);
-		System.out.println(validTripsTest.size());
-		*/
-
-		/*
-		stationIds = getStationIds("Sorø St.", "Slagelse St.");
-		validTripsTest = getValidTrips(stationIds[0], stationIds[1], "17:00:00", "20:00:00");
-		validTripsTest.forEach(System.out::println);
-		System.out.println(validTripsTest.size());
-		*/
-
-		//trips.forEach(trip -> System.out.println(trip.getTripHeadsign()));
-		//ApiInteg.getTrips(8600646, 8600798, "22/12/2022", "17:55");
-		//System.out.println(trips.size());
-
 	}
 
 	public static ArrayList<Station> getStations() {
@@ -173,19 +153,7 @@ public class main{
 								}
 							}
 						}
-
-
 					});
-			/*
-			testMap.entrySet().stream()
-					.filter(x -> x.getValue().size() == 2 && x.getValue().get(0).equals(fromStation))
-					.forEach(x -> {
-						System.out.print(x.getKey() + ": ");
-						x.getValue().forEach(value -> System.out.print(value + " "));
-						System.out.println();
-					});
-			*/
-
 			testMap.entrySet().stream()
 					.filter(x -> x.getValue().size() == 2 && x.getValue().get(0).split(",")[0].equals(fromStation))
 					.forEach(x -> validTrips.add(x.getKey() + "," + x.getValue().get(0).split(",")[1] + "," + x.getValue().get(1).split(",")[1]));
@@ -221,7 +189,6 @@ public class main{
 					.skip(1)
 					.map(line -> line.split(","))
 					.filter(lineArray -> lineArray[0].equals(tripId))
-					//.peek(System.out::println)
 					.forEach(lineArray -> {
 						dummyData.add(lineArray[0] + "," + lineArray[1] + "," + lineArray[2] + "," + lineArray[3]);
 						});

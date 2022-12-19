@@ -111,7 +111,6 @@ public class UI{
 		if(inputIntArray[0] < 0 || inputIntArray[0] > 23 || inputIntArray[1] < 0 || inputIntArray[1] > 59  || inputIntArray[2] < 0 || inputIntArray[2] > 59)
 			return false;
 
-
 		return true;
 	}
 
